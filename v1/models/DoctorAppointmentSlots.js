@@ -3,12 +3,15 @@ const mongoose = require("mongoose");
 const DoctorAppointmentSlots = new mongoose.Schema({
     doctor_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Doctor"
+        ref: "Doctor",
+        require:[true,  "Doctor ID is required"],
+
     },
     date: {
         type: Date,
         default:  Date.now,
-        required: true
+        required: [true,  "Date is required"],
+
     },
     slots:{
         // the slots will have an array of object which will store the time of slot,  and the status of the slots
