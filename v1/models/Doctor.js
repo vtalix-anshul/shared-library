@@ -8,11 +8,17 @@ const DoctorSchema = new mongoose.Schema({
     },
     main_specialization:{
         type:String,
-        require:true
+        require:[true, "main specialization is needed for creating the profile"]
+    },
+    //this will be used as tags in the frontend.
+    expertise:{
+        type:[String],
+        default:[],
+        require:[true, "please select at least 5 expertise"]
     },
     experience:{
         type:Number,
-        require:true
+        require:[true, "please enter the experience in years"]
     },
     education:[{
         degree:{
@@ -34,22 +40,26 @@ const DoctorSchema = new mongoose.Schema({
     }],
     clinic_address_complete:{
         type:String,
+        require:[true,  "please enter the complete address of the clinic"],
+
     },
     clinic_phone:{
         type:String,
-        require:true
+        require:[true,  "please enter the phone number of the clinic"],
+
     },
     registration_number:{
         type:String,
-        require:true
+        require:[true, "please enter the registration/license number"],
+
     },
     registration_council:{
         type:String,
-        require:true
+        require:[true, "council name is needed for creating the profile"]
     },
     registration_year:{
         type:Number,
-        require:true
+        require:[true, "Please provide the registration year"]
     },
     identity_proof:{
         file_type:{
@@ -87,11 +97,11 @@ const DoctorSchema = new mongoose.Schema({
     },
     discount_on_3_appointments:{
         type: Number,
-        default: 3
+        default: 5
     },
     discount_on_5_appointments:{
         type: Number,
-        default: 3
+        default: 8
     },
     total_appointments:{
         type:Number,
