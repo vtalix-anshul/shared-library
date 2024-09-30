@@ -142,4 +142,11 @@ const DoctorSchema = new mongoose.Schema({
     timestamps:true
 });
 
+DoctorSchema.index({ id: 1 });  // Index for doctor by user ID
+DoctorSchema.index({ main_specialization: 1 });  // Search by specialization
+DoctorSchema.index({ isApproved: 1 });  // To quickly find approved or unapproved doctors
+DoctorSchema.index({ total_appointments_completed: -1 });  // Sort doctors by completed appointments
+DoctorSchema.index({ rating: -1 });  // Sort by doctor ratings
+DoctorSchema.index({ expertise: 1 });  // Indexing expertise for faster queries
+
 module.exports = mongoose.model("Doctor",  DoctorSchema);
