@@ -7,7 +7,7 @@ const PatientSchema = new mongoose.Schema({
         require:true
     },
     coupons:[{
-        couponId:{
+        coupon_id:{
             type: mongoose.Schema.Types.ObjectId,
             ref:"Coupon",
             require:true
@@ -17,8 +17,23 @@ const PatientSchema = new mongoose.Schema({
             require:true,
         }
     }],
+    subscriptions:{
+        type:[{
+            doctor_id:{
+                type: mongoose.Schema.Types.ObjectId,
+                ref:"Doctor",
+                require:true
+            },
+            appointments_left:{
+                type:Number,
+                require:true,
+                default: 2
+            }
+        }],
+        default: []
+    },
     favorite_doctors:[{
-        doctorId:{
+        doctor_id:{
             type: mongoose.Schema.Types.ObjectId,
             ref:"Doctor",
             require:true

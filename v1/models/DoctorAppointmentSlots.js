@@ -3,15 +3,12 @@ const mongoose = require("mongoose");
 const DoctorAppointmentSlots = new mongoose.Schema({
     doctor_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Doctor",
-        require:[true,  "Doctor ID is required"],
-
+        ref: "Doctor"
     },
     date: {
         type: Date,
         default:  Date.now,
-        required: [true,  "Date is required"],
-
+        required: true
     },
     slots:{
         // the slots will have an array of object which will store the time of slot,  and the status of the slots
@@ -36,6 +33,10 @@ const DoctorAppointmentSlots = new mongoose.Schema({
             patient_id: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "Patient"
+            },
+            blocked_until:{
+                type:Date,
+                default: null
             }
         }]
 
@@ -48,3 +49,6 @@ const DoctorAppointmentSlots = new mongoose.Schema({
 DoctorAppointmentSlots.index({doctor_id:1,date:1},{unique:true});
 
 module.exports = mongoose.model("AppointmentSlots", DoctorAppointmentSlots);
+
+
+// this service needs refactoring
