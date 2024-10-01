@@ -4,11 +4,9 @@ const UserSchema = new mongoose.Schema({
     title:{
         type:String,
     },
-    first_name:{
+    full_name:{
         type:String,
-    },
-    last_name:{
-        type:String,
+        require:true
     },
     middle_name:{
         type:String,
